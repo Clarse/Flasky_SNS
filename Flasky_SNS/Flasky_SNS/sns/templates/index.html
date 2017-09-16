@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}
+    Index
+{% endblock %}
+
+{% block page_content %}
+    <div><h1>Hello,
+        {% if current_user.is_authenticated %}
+           {{ current_user.username }}
+        {% elif name %}
+            {{ name }}, you are not logged!
+        {% else %}
+           Stranger
+        {% endif %} </h1>
+    </div>
+    {{ wtf.quick_form(form) }}
+    {{ moment.lang('en') }}
+    <p>local date is {{ moment(current_time).format('LLL') }}</p>
+    <p>local time is {{ moment(current_time).fromNow(refresh=True) }}</p>
+{% endblock %}
